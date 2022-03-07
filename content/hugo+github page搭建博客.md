@@ -1,4 +1,8 @@
-# hugo+github page搭建博客
+---
+title: "hugo+github page搭建博客"
+date: 2022-03-03T08:47:11+01:00
+draft: false
+---
 
 ## 背景
 
@@ -19,13 +23,13 @@ brew install hugo
 ### 2. 使用`hugo`命令生成新站点
 
 ~~~shell
-hugo new site/to/page
-// demo hugo new ~/hugo
+hugo new site path/to/site
+// demo hugo new site ~/hugo
 ~~~
 
 站点目录结构如下
 
-![image-20220302161237193](/Users/zhangyifeng/hugo/static/article_page/image-20220302161237193.png)
+![](static/screenshot-20220307-183548.png)
 
 
 

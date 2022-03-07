@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='背景 要找工作，并且对go比较感兴趣，想从QA转当RD，因此选择了hugo来搭建博客，一来hugo使用起来比较简单，二来即使有什么问题也可以自己看源码解决。
+步骤 1. 安装hugo mac 使用brew安装
+brew install hugo 2. 使用hugo命令生成新站点 hugo new site path/to/site // demo hugo new site ~/hugo 站点目录结构如下
+3. 挑选皮肤 我用的是hyde皮肤
+cd themes git clone https://github.com/spf13/hyde.git 【注意】本处的坑在于github pages构建的时候会报错![image-20220304001940095](/Users/zhangyifeng/Library/Application Support/typora-user-images/image-20220304001940095.png)
+根据错误提示内容，我们可以注意到github在部署的时候，会把hyde皮肤当作一个子模块，因此我们拉取hyde代码仓库的时候应该使用一下命令
+git submodule add https://github.com/spf13/hyde.git themes/hyde 这样就可以自动把hyde仓库当作一个子模块处理
+4. 代码上传到github 上传命令就不详细介绍了，详细说一下代码库的配置![image-20220304002632014](/Users/zhangyifeng/Library/Application Support/typora-user-images/image-20220304002632014.png)
+以我的github举例，此处使用本人用户名的话，url是https://maximillion2015.github.io/,推荐使用这种方案！
+如果使用其他名字的话，例如改为Maximillion2017.github.io，则url会变成 https://maximillion2015.github.io/Maximillion2017.github.io/，就显得比较累赘了。
+5. 【大坑】github page 404 我按照参考文档中hugo官方介绍来操作，遇到了404，于是找了很久才找到原因
+ 这时候访问站点,会提示404,因为仓库中没有index.html文件
+我们把仓库克隆下来,然后把刚才站点的文件全部复制进去,然后提交,这时候访问还是会404,你仔细观察会发现,Hugo构建的静态文件在public文件夹,在一个二级目录,而GitHub Pages没有选项可以选择二级目录(gitee可以,但是提交代码更新了,需要手动去刷新重新部署),但是会发现,有选择分支的选项,这我们可以利用起来,在git中有个subtree,具体使用可以翻阅文档,我们先来实现
+# 站点根目录执行 git subtree push --prefix public origin public 第一个public 是当前项目的文件夹,第二个是远程分支的名称
+这时我们再在仓库的github pages设置里选择分支为public,点击save,稍等片刻,就可以正常访问了![image-20220304003639878](/Users/zhangyifeng/Library/Application Support/typora-user-images/image-20220304003639878.'><title>hugo&#43;github page搭建博客</title>
+
+<link rel='canonical' href='http://maximillion2015.github.io/hugo&#43;github-page%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/'>
+
+<link rel="stylesheet" href="/scss/style.min.1b167e2cb0123f4ab756c1f7b38280839833cb553987f96fa7aaeacb7f4f71de.css"><meta property='og:title' content='hugo&#43;github page搭建博客'>
+<meta property='og:description' content='背景 要找工作，并且对go比较感兴趣，想从QA转当RD，因此选择了hugo来搭建博客，一来hugo使用起来比较简单，二来即使有什么问题也可以自己看源码解决。
+步骤 1. 安装hugo mac 使用brew安装
+brew install hugo 2. 使用hugo命令生成新站点 hugo new site path/to/site // demo hugo new site ~/hugo 站点目录结构如下
+3. 挑选皮肤 我用的是hyde皮肤
+cd themes git clone https://github.com/spf13/hyde.git 【注意】本处的坑在于github pages构建的时候会报错![image-20220304001940095](/Users/zhangyifeng/Library/Application Support/typora-user-images/image-20220304001940095.png)
+根据错误提示内容，我们可以注意到github在部署的时候，会把hyde皮肤当作一个子模块，因此我们拉取hyde代码仓库的时候应该使用一下命令
+git submodule add https://github.com/spf13/hyde.git themes/hyde 这样就可以自动把hyde仓库当作一个子模块处理
+4. 代码上传到github 上传命令就不详细介绍了，详细说一下代码库的配置![image-20220304002632014](/Users/zhangyifeng/Library/Application Support/typora-user-images/image-20220304002632014.png)
+以我的github举例，此处使用本人用户名的话，url是https://maximillion2015.github.io/,推荐使用这种方案！
+如果使用其他名字的话，例如改为Maximillion2017.github.io，则url会变成 https://maximillion2015.github.io/Maximillion2017.github.io/，就显得比较累赘了。
+5. 【大坑】github page 404 我按照参考文档中hugo官方介绍来操作，遇到了404，于是找了很久才找到原因
+ 这时候访问站点,会提示404,因为仓库中没有index.html文件
+我们把仓库克隆下来,然后把刚才站点的文件全部复制进去,然后提交,这时候访问还是会404,你仔细观察会发现,Hugo构建的静态文件在public文件夹,在一个二级目录,而GitHub Pages没有选项可以选择二级目录(gitee可以,但是提交代码更新了,需要手动去刷新重新部署),但是会发现,有选择分支的选项,这我们可以利用起来,在git中有个subtree,具体使用可以翻阅文档,我们先来实现
+# 站点根目录执行 git subtree push --prefix public origin public 第一个public 是当前项目的文件夹,第二个是远程分支的名称
+这时我们再在仓库的github pages设置里选择分支为public,点击save,稍等片刻,就可以正常访问了![image-20220304003639878](/Users/zhangyifeng/Library/Application Support/typora-user-images/image-20220304003639878.'>
+<meta property='og:url' content='http://maximillion2015.github.io/hugo&#43;github-page%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/'>
+<meta property='og:site_name' content='ephonzhang的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='' /><meta property='article:published_time' content='2022-03-03T08:47:11&#43;01:00'/><meta property='article:modified_time' content='2022-03-03T08:47:11&#43;01:00'/>
+<meta name="twitter:title" content="hugo&#43;github page搭建博客">
+<meta name="twitter:description" content="背景 要找工作，并且对go比较感兴趣，想从QA转当RD，因此选择了hugo来搭建博客，一来hugo使用起来比较简单，二来即使有什么问题也可以自己看源码解决。
+步骤 1. 安装hugo mac 使用brew安装
+brew install hugo 2. 使用hugo命令生成新站点 hugo new site path/to/site // demo hugo new site ~/hugo 站点目录结构如下
+3. 挑选皮肤 我用的是hyde皮肤
+cd themes git clone https://github.com/spf13/hyde.git 【注意】本处的坑在于github pages构建的时候会报错![image-20220304001940095](/Users/zhangyifeng/Library/Application Support/typora-user-images/image-20220304001940095.png)
+根据错误提示内容，我们可以注意到github在部署的时候，会把hyde皮肤当作一个子模块，因此我们拉取hyde代码仓库的时候应该使用一下命令
+git submodule add https://github.com/spf13/hyde.git themes/hyde 这样就可以自动把hyde仓库当作一个子模块处理
+4. 代码上传到github 上传命令就不详细介绍了，详细说一下代码库的配置![image-20220304002632014](/Users/zhangyifeng/Library/Application Support/typora-user-images/image-20220304002632014.png)
+以我的github举例，此处使用本人用户名的话，url是https://maximillion2015.github.io/,推荐使用这种方案！
+如果使用其他名字的话，例如改为Maximillion2017.github.io，则url会变成 https://maximillion2015.github.io/Maximillion2017.github.io/，就显得比较累赘了。
+5. 【大坑】github page 404 我按照参考文档中hugo官方介绍来操作，遇到了404，于是找了很久才找到原因
+ 这时候访问站点,会提示404,因为仓库中没有index.html文件
+我们把仓库克隆下来,然后把刚才站点的文件全部复制进去,然后提交,这时候访问还是会404,你仔细观察会发现,Hugo构建的静态文件在public文件夹,在一个二级目录,而GitHub Pages没有选项可以选择二级目录(gitee可以,但是提交代码更新了,需要手动去刷新重新部署),但是会发现,有选择分支的选项,这我们可以利用起来,在git中有个subtree,具体使用可以翻阅文档,我们先来实现
+# 站点根目录执行 git subtree push --prefix public origin public 第一个public 是当前项目的文件夹,第二个是远程分支的名称
+这时我们再在仓库的github pages设置里选择分支为public,点击save,稍等片刻,就可以正常访问了![image-20220304003639878](/Users/zhangyifeng/Library/Application Support/typora-user-images/image-20220304003639878.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <h1 class="site-name"><a href="/">ephonzhang的博客</a></h1>
+        <h2 class="site-description"></h2></header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/hugo&#43;github-page%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">hugo&#43;github page搭建博客</a>
+    </h2>
+
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 03, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 1 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="背景">背景</h2>
+<p>要找工作，并且对go比较感兴趣，想从QA转当RD，因此选择了hugo来搭建博客，一来hugo使用起来比较简单，二来即使有什么问题也可以自己看源码解决。</p>
+<h2 id="步骤">步骤</h2>
+<h3 id="1-安装hugo">1. 安装hugo</h3>
+<p>mac 使用brew安装</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">brew install hugo
+</span></span></code></pre></div><h3 id="2-使用hugo命令生成新站点">2. 使用<code>hugo</code>命令生成新站点</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new site path/to/site
+</span></span><span class="line"><span class="cl">// demo hugo new site ~/hugo
+</span></span></code></pre></div><p>站点目录结构如下</p>
+<p><img src="/Users/zhangyifeng/hugo/static/article_page/image-20220302161237193.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20220302161237193"
+	
+	
+></p>
+<h3 id="3-挑选皮肤">3. 挑选皮肤</h3>
+<p>我用的是<code>hyde</code>皮肤</p>
+<pre tabindex="0"><code>cd themes
+git clone https://github.com/spf13/hyde.git
+</code></pre><p>【<strong>注意</strong>】本处的坑在于github pages构建的时候会报错![image-20220304001940095](/Users/zhangyifeng/Library/Application Support/typora-user-images/image-20220304001940095.png)</p>
+<p>根据错误提示内容，我们可以注意到github在部署的时候，会把<code>hyde</code>皮肤当作一个子模块，因此我们拉取<code>hyde</code>代码仓库的时候应该使用一下命令</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git submodule add https://github.com/spf13/hyde.git themes/hyde
+</span></span></code></pre></div><p>这样就可以自动把<code>hyde</code>仓库当作一个子模块处理</p>
+<h3 id="4-代码上传到github">4. 代码上传到github</h3>
+<p>上传命令就不详细介绍了，详细说一下代码库的配置![image-20220304002632014](/Users/zhangyifeng/Library/Application Support/typora-user-images/image-20220304002632014.png)</p>
+<p>以我的github举例，此处使用本人用户名的话，url是<code>https://maximillion2015.github.io/</code>,推荐使用这种方案！</p>
+<p>如果使用其他名字的话，例如改为<code>Maximillion2017.github.io</code>，则url会变成 <code>https://maximillion2015.github.io/Maximillion2017.github.io/</code>，就显得比较累赘了。</p>
+<h3 id="5-大坑github-page-404">5. 【<strong>大坑</strong>】github page 404</h3>
+<p>我按照参考文档中hugo官方介绍来操作，遇到了404，于是找了很久才找到原因</p>
+<blockquote>
+<p>这时候访问站点,会提示<code>404</code>,因为仓库中没有<code>index.html</code>文件</p>
+<p>我们把仓库克隆下来,然后把刚才站点的文件全部复制进去,然后提交,这时候访问还是会404,你仔细观察会发现,Hugo构建的静态文件在<code>public</code>文件夹,在一个<code>二级目录</code>,而GitHub Pages没有选项可以选择二级目录(gitee可以,但是提交代码更新了,需要手动去刷新重新部署),但是会发现,有选择分支的选项,这我们可以利用起来,在git中有个<code>subtree</code>,具体使用可以翻阅文档,我们先来实现</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 站点根目录执行</span>
+</span></span><span class="line"><span class="cl">git subtree push --prefix public origin public
+</span></span></code></pre></div><p>第一个public 是当前项目的文件夹,第二个是远程分支的名称</p>
+<p>这时我们再在仓库的github pages设置里选择分支为public,点击save,稍等片刻,就可以正常访问了![image-20220304003639878](/Users/zhangyifeng/Library/Application Support/typora-user-images/image-20220304003639878.png)</p>
+</blockquote>
+<h3 id="6-示例">6. 示例</h3>
+<p>我的博客，希望大家共同进步</p>
+<p><a class="link" href="https://maximillion2015.github.io"  target="_blank" rel="noopener"
+    >https://maximillion2015.github.io</a></p>
+<h2 id="参考文档">参考文档</h2>
+<ul>
+<li>
+<p><a class="link" href="https://www.gohugo.org"  target="_blank" rel="noopener"
+    >https://www.gohugo.org</a></p>
+</li>
+<li>
+<p><a class="link" href="https://www.xiangxingyu.com/post/building-blog-with-hugo-typora-github-pages/"  target="_blank" rel="noopener"
+    >https://www.xiangxingyu.com/post/building-blog-with-hugo-typora-github-pages/</a></p>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2022 ephonzhang的博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.8.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

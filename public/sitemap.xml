@@ -2,10 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://maximillion2015.github.io/categories/</loc>
+    <loc>http://maximillion2015.github.io/</loc>
+    <lastmod>2022-03-03T08:47:11+01:00</lastmod>
   </url><url>
-    <loc>https://maximillion2015.github.io/</loc>
+    <loc>http://maximillion2015.github.io/hugo&#43;github-page%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2022-03-03T08:47:11+01:00</lastmod>
   </url><url>
-    <loc>https://maximillion2015.github.io/tags/</loc>
+    <loc>http://maximillion2015.github.io/post/hugo&#43;github-page%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2022-03-03T08:47:11+01:00</lastmod>
+  </url><url>
+    <loc>http://maximillion2015.github.io/post/</loc>
+    <lastmod>2022-03-03T08:47:11+01:00</lastmod>
+  </url><url>
+    <loc>http://maximillion2015.github.io/categories/</loc>
+  </url><url>
+    <loc>http://maximillion2015.github.io/tags/</loc>
   </url>
 </urlset>

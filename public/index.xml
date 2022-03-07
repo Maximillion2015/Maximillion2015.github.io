@@ -1,10 +1,76 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>My New Hugo Site</title>
-    <link>https://maximillion2015.github.io/</link>
-    <description>Recent content on My New Hugo Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://maximillion2015.github.io/index.xml" rel="self" type="application/rss+xml" />
-  </channel>
+    <channel>
+        <title>ephonzhang的博客</title>
+        <link>http://maximillion2015.github.io/</link>
+        <description>Recent content on ephonzhang的博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-CN</language>
+        <lastBuildDate>Thu, 03 Mar 2022 08:47:11 +0100</lastBuildDate><atom:link href="http://maximillion2015.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>hugo&#43;github page搭建博客</title>
+        <link>http://maximillion2015.github.io/post/hugo&#43;github-page%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</link>
+        <pubDate>Thu, 03 Mar 2022 08:47:11 +0100</pubDate>
+        
+        <guid>http://maximillion2015.github.io/post/hugo&#43;github-page%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</guid>
+        <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;要找工作，并且对go比较感兴趣，想从QA转当RD，因此选择了hugo来搭建博客，一来hugo使用起来比较简单，二来即使有什么问题也可以自己看源码解决。&lt;/p&gt;
+&lt;h2 id=&#34;步骤&#34;&gt;步骤&lt;/h2&gt;
+&lt;h3 id=&#34;1-安装hugo&#34;&gt;1. 安装hugo&lt;/h3&gt;
+&lt;p&gt;mac 使用brew安装&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew install hugo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-使用hugo命令生成新站点&#34;&gt;2. 使用&lt;code&gt;hugo&lt;/code&gt;命令生成新站点&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo new site path/to/site
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;// demo hugo new site ~/hugo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;站点目录结构如下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://maximillion2015.github.io/Users/zhangyifeng/hugo/static/article_page/image-20220302161237193.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20220302161237193&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;3-挑选皮肤&#34;&gt;3. 挑选皮肤&lt;/h3&gt;
+&lt;p&gt;我用的是&lt;code&gt;hyde&lt;/code&gt;皮肤&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd themes
+git clone https://github.com/spf13/hyde.git
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;【&lt;strong&gt;注意&lt;/strong&gt;】本处的坑在于github pages构建的时候会报错![image-20220304001940095](/Users/zhangyifeng/Library/Application Support/typora-user-images/image-20220304001940095.png)&lt;/p&gt;
+&lt;p&gt;根据错误提示内容，我们可以注意到github在部署的时候，会把&lt;code&gt;hyde&lt;/code&gt;皮肤当作一个子模块，因此我们拉取&lt;code&gt;hyde&lt;/code&gt;代码仓库的时候应该使用一下命令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git submodule add https://github.com/spf13/hyde.git themes/hyde
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样就可以自动把&lt;code&gt;hyde&lt;/code&gt;仓库当作一个子模块处理&lt;/p&gt;
+&lt;h3 id=&#34;4-代码上传到github&#34;&gt;4. 代码上传到github&lt;/h3&gt;
+&lt;p&gt;上传命令就不详细介绍了，详细说一下代码库的配置![image-20220304002632014](/Users/zhangyifeng/Library/Application Support/typora-user-images/image-20220304002632014.png)&lt;/p&gt;
+&lt;p&gt;以我的github举例，此处使用本人用户名的话，url是&lt;code&gt;https://maximillion2015.github.io/&lt;/code&gt;,推荐使用这种方案！&lt;/p&gt;
+&lt;p&gt;如果使用其他名字的话，例如改为&lt;code&gt;Maximillion2017.github.io&lt;/code&gt;，则url会变成 &lt;code&gt;https://maximillion2015.github.io/Maximillion2017.github.io/&lt;/code&gt;，就显得比较累赘了。&lt;/p&gt;
+&lt;h3 id=&#34;5-大坑github-page-404&#34;&gt;5. 【&lt;strong&gt;大坑&lt;/strong&gt;】github page 404&lt;/h3&gt;
+&lt;p&gt;我按照参考文档中hugo官方介绍来操作，遇到了404，于是找了很久才找到原因&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这时候访问站点,会提示&lt;code&gt;404&lt;/code&gt;,因为仓库中没有&lt;code&gt;index.html&lt;/code&gt;文件&lt;/p&gt;
+&lt;p&gt;我们把仓库克隆下来,然后把刚才站点的文件全部复制进去,然后提交,这时候访问还是会404,你仔细观察会发现,Hugo构建的静态文件在&lt;code&gt;public&lt;/code&gt;文件夹,在一个&lt;code&gt;二级目录&lt;/code&gt;,而GitHub Pages没有选项可以选择二级目录(gitee可以,但是提交代码更新了,需要手动去刷新重新部署),但是会发现,有选择分支的选项,这我们可以利用起来,在git中有个&lt;code&gt;subtree&lt;/code&gt;,具体使用可以翻阅文档,我们先来实现&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 站点根目录执行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git subtree push --prefix public origin public
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;第一个public 是当前项目的文件夹,第二个是远程分支的名称&lt;/p&gt;
+&lt;p&gt;这时我们再在仓库的github pages设置里选择分支为public,点击save,稍等片刻,就可以正常访问了![image-20220304003639878](/Users/zhangyifeng/Library/Application Support/typora-user-images/image-20220304003639878.png)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;6-示例&#34;&gt;6. 示例&lt;/h3&gt;
+&lt;p&gt;我的博客，希望大家共同进步&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://maximillion2015.github.io&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://maximillion2015.github.io&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;参考文档&#34;&gt;参考文档&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.gohugo.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.gohugo.org&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.xiangxingyu.com/post/building-blog-with-hugo-typora-github-pages/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.xiangxingyu.com/post/building-blog-with-hugo-typora-github-pages/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
 </rss>

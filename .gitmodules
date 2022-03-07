@@ -1,9 +1,9 @@
 [submodule "themes/hyde"]
 	path = themes/hyde
 	url = https://github.com/spf13/hyde.git
-[submodule "theme/LoveIt"]
-	path = theme/LoveIt
-	url = https://github.com/dillonzq/LoveIt.git
 [submodule "themes/LoveIt"]
 	path = themes/LoveIt
 	url = https://github.com/dillonzq/LoveIt.git
+[submodule "themes/stack"]
+	path = themes/stack
+	url = https://github.com/CaiJimmy/hugo-theme-stack.git
